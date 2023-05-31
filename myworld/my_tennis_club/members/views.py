@@ -56,7 +56,7 @@ class SnippetOverviewView(APIView):
         })
 
 class SnippetCreateView(APIView):
-    #permission_classes = (IsAuthenticated,)
+    permission_classes = (IsAuthenticated,)
 
     def post(self, request):
         serializer = SnippetCreateUpdateSerializer(data=request.data)
@@ -74,7 +74,7 @@ class SnippetDetailView(APIView):
         return Response(serializer.data)
 
 class SnippetUpdateView(APIView):
-    #permission_classes = (IsAuthenticated,)
+    permission_classes = (IsAuthenticated,)
 
     def put(self, request, snippet_id):
         snippet = Snippet.objects.get(id=snippet_id)
@@ -87,7 +87,7 @@ class SnippetUpdateView(APIView):
         return Response(serializer.errors, status=400)
 
 class SnippetDeleteView(APIView):
-    #permission_classes = (IsAuthenticated,)
+    permission_classes = (IsAuthenticated,)
 
     def delete(self, request, snippet_id):
         snippet = Snippet.objects.get(id=snippet_id)
@@ -97,7 +97,7 @@ class SnippetDeleteView(APIView):
         return Response(serializer.data)
 
 class TagListView(APIView):
-    #permission_classes = (IsAuthenticated,)
+    permission_classes = (IsAuthenticated,)
 
     def get(self, request):
         tags = Tag.objects.all()
@@ -114,7 +114,7 @@ class TagListView(APIView):
 
 
 class TagDetailView(APIView):
-    #permission_classes = (IsAuthenticated,)
+    permission_classes = (IsAuthenticated,)
 
     def get(self, request, tag_id):
         snippets = Snippet.objects.filter(tag_id=tag_id)
