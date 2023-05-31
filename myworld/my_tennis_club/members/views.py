@@ -13,13 +13,6 @@ from rest_framework import status
 from .models import *
 
 
-# class LoginView(TokenObtainPairView):
-#     permission_classes = (AllowAny,)
-#     serializer_class = LoginSerializer
-
-# class RefreshView(TokenRefreshView):
-#     permission_classes = (AllowAny,)
-#     serializer_class = TokenPairSerializer
 
 
 class Loginview(APIView):
@@ -68,16 +61,8 @@ class SnippetCreateView(APIView):
     def post(self, request):
         serializer = SnippetCreateUpdateSerializer(data=request.data)
         if serializer.is_valid():
-            tag_title = serializer.validated_data.get('tag', {}).get('title', '')
-            tag, created = Tag.objects.get_or_create(title=tag_title)
-            snippet = Snippet.objects.create(
-                title=serializer.validated_data['title'],
-                content=serializer.validated_data['content'],
-                created_by=request.user,
-                tag=tag
-            )
-            snippet_serializer = SnippetDetailSerializer(snippet)
-            return Response(snippet_serializer.data)
+            serializer.save()
+            return Response(serializer.data)
         return Response(serializer.errors, status=400)
 
 class SnippetDetailView(APIView):

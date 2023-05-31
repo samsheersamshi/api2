@@ -8,8 +8,6 @@ urlpatterns = [
     path('update/<int:snippet_id>/', SnippetUpdateView.as_view(), name='snippet_update'),
     path('delete/<int:snippet_id>/', SnippetDeleteView.as_view(), name='snippet_delete'),
     path('tags/', TagListView.as_view(), name='tag_list'),
-    path('tag/<int:tag_id>/', TagDetailView.as_view(), name='tag_detail'),
-    # path('loginview/',LoginView.as_view(),name="login"),
-    # path('token/',RefreshView.as_view(),name="dd")
+    path('tag/<int:tag_id>/', TagDetailView.as_view(), name='tag_detail'),   
     path('login/',Loginview.as_view(),name='dd')
 ]

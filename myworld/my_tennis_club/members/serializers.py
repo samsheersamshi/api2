@@ -43,4 +43,4 @@ class SnippetDetailSerializer(serializers.ModelSerializer):
 class SnippetCreateUpdateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Snippet
-        fields = ('id', 'title', 'content', 'tag')
+        fields = '__all__'
